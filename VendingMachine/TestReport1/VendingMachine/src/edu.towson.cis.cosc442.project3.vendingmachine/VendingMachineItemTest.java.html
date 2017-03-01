@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VendingMachineItemTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">AllTests (Mar 1, 2017 3:49:28 PM)</a> &gt; <a href="../../index.html" class="el_group">VendingMachine</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.towson.cis.cosc442.project3.vendingmachine</a> &gt; <span class="el_source">VendingMachineItemTest.java</span></div><h1>VendingMachineItemTest.java</h1><pre class="source lang-java linenums">package edu.towson.cis.cosc442.project3.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+<span class="fc" id="L8">public class VendingMachineItemTest {</span>
+
+	VendingMachineItem item;
+<span class="fc" id="L11">	final String ITEMNAME = &quot;ItemName&quot;;</span>
+<span class="fc" id="L12">	final double ITEMPRICE = 1.5;</span>
+	
+	//Setup test environment
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L17">		item = new VendingMachineItem(ITEMNAME, ITEMPRICE);</span>
+<span class="fc" id="L18">	}</span>
+
+	//Test VendingMachineItem() constructor so passed values are assigned correctly
+	@Test
+	public void testVendingMachineItem() {
+<span class="fc" id="L23">		item = new VendingMachineItem(&quot;Test name&quot;, 1);</span>
+<span class="fc" id="L24">		assertEquals(&quot;Test name&quot;, item.getName());</span>
+<span class="fc" id="L25">		assertEquals(1, item.getPrice(), .001);</span>
+<span class="fc" id="L26">	}</span>
+	
+	@Test(expected = VendingMachineException.class)
+	public void testVendingMachineItemNegativePrice() {
+<span class="nc" id="L30">		item = new VendingMachineItem(&quot;Test name&quot;, -1);</span>
+<span class="nc" id="L31">	}</span>
+
+	//Test getName() so it returns the proper value
+	@Test
+	public void testGetName() {
+<span class="fc" id="L36">		assertEquals(ITEMNAME, item.getName());</span>
+<span class="fc" id="L37">	}</span>
+
+	//Test getPrice()
+	@Test
+	public void testGetPrice() {
+<span class="fc" id="L42">		assertEquals(ITEMPRICE, item.getPrice(), .001);</span>
+<span class="fc" id="L43">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span>AllTests (Mar 1, 2017 3:49:28 PM)</div></body></html>
