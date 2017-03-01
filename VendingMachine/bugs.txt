@@ -1,0 +1,4 @@
+1. Entering a null code in removeItem() results in a NullPointerException
+2. makePurchase allowed for a null code to be entered, resulted in a NullPointerException
+3. VendingMachineItem() sets the name before checking the price. Setting name and price are postconditions. 
+   Corrected so price is checked first, then they are both set
