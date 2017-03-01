@@ -81,6 +81,12 @@ public class VendingMachineTest {
 	public void testMakePurchaseNullCode() {
 		vendor.makePurchase(null);
 	}
+	
+	@Test
+	public void testMakePurchaseNoMoney() {
+		vendor.addItem(item, "D");
+		assertFalse(vendor.makePurchase("D"));
+	}
 
 	@Test
 	public void testMakePurchaseNullItem() {
