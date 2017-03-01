@@ -18,6 +18,8 @@ public class VendingMachineTest {
 	 *
 	 * @generatedBy CodePro at 3/1/17 3:40 PM
 	 */
+	
+	
 	@Test
 	public void testVendingMachine_1()
 		throws Exception {
@@ -82,7 +84,7 @@ public class VendingMachineTest {
 		VendingMachine fixture = new VendingMachine();
 		fixture.balance = 1.0;
 		VendingMachineItem item = new VendingMachineItem("", 1.0);
-		String code = "A";
+		String code = "C";
 
 		fixture.addItem(item, code);
 
@@ -107,6 +109,16 @@ public class VendingMachineTest {
 		fixture.addItem(item, code);
 
 		// add additional test code here
+	}
+	
+	
+	//Assert duplicate entries are not allowed
+	@Test(expected = VendingMachineException.class)
+	public void testAddItem_4() {
+		VendingMachine vendor = new VendingMachine();
+		VendingMachineItem item = new VendingMachineItem("TestItem", 1);
+		vendor.addItem(item, "B");
+		vendor.addItem(item, "B");
 	}
 
 	/**
@@ -140,7 +152,7 @@ public class VendingMachineTest {
 		throws Exception {
 		VendingMachine fixture = new VendingMachine();
 		fixture.balance = 1.0;
-		String code = "A";
+		String code = "D";
 
 		VendingMachineItem result = fixture.getItem(code);
 
@@ -286,6 +298,27 @@ public class VendingMachineTest {
 		assertTrue(result);
 	}
 
+	
+	//Assert an item can successfully be purchased
+	@Test
+	public void testMakePurchase_5() {
+		VendingMachine vendor = new VendingMachine();
+		VendingMachineItem item = new VendingMachineItem("TestItem", 1);
+		vendor.addItem(item, "D");
+		vendor.insertMoney(1);
+		assertTrue(vendor.makePurchase("D"));
+	}
+	
+	//Assert item is not purchased if balance is too low
+	@Test
+	public void testMakePurchase_6() {
+		VendingMachine vendor = new VendingMachine();
+		VendingMachineItem item = new VendingMachineItem("TestItem", 1);
+		vendor.addItem(item, "D");
+		assertFalse(vendor.makePurchase("D"));
+	}
+	
+	
 	/**
 	 * Run the VendingMachineItem removeItem(String) method test.
 	 *
@@ -344,6 +377,14 @@ public class VendingMachineTest {
 
 		// add additional test code here
 		assertNotNull(result);
+	}
+	
+	@Test
+	public void testRemoveItem_4() {
+		VendingMachine vendor = new VendingMachine();
+		VendingMachineItem item = new VendingMachineItem("TestItem",1);
+		vendor.addItem(item, "A");
+		assertNotNull(vendor.removeItem("A"));
 	}
 
 	/**
